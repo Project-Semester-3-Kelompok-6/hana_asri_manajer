@@ -14,7 +14,7 @@
 
         <include
 
-            layout="@layout/recycle_view_home_activity" >
+            layout="@layout/recycle_view_home_activity">
 
         </include>
 

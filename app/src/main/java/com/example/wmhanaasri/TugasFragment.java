@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import adapter.AktifitasAdapter;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TugasFragment#newInstance} factory method to

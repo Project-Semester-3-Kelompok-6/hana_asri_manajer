@@ -1,17 +1,23 @@
 package com.example.wmhanaasri;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 import java.util.ArrayList;
+
+import adapter.AktifitasAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +28,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private AktifitasAdapter adapter;
     private ArrayList<ListAktivitas> AktifitasArrayList;
+    private ImageView imgView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,14 +60,11 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recycle_viewHome);
 
@@ -79,15 +83,33 @@ public class HomeFragment extends Fragment {
         // Mengatur layout manager dan adapter untuk RecyclerView
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        imgView = view.findViewById(R.id.btnPresensi);
+        imgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Buat objek PresensiFragment
+                PresensiFragment presensiFragment = new PresensiFragment();
+
+                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, presensiFragment);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
+            }
+        });
+
+        // view
         return view;
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_home, container, false);
-//    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     void addData(){
         AktifitasArrayList = new ArrayList<>();
