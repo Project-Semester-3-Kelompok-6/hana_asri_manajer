@@ -8,12 +8,20 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPresensi"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_orange"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <View
         android:id="@+id/headerPresensi"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:background="@drawable/bg_orange"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarPresensi"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -25,9 +33,9 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@id/btnBack"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"/>
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"/>
 
     <ImageButton
         android:id="@+id/btnBack"

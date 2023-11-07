@@ -37,7 +37,7 @@ public class AktifitasAdapter extends RecyclerView.Adapter<AktifitasAdapter.Akti
         public AktifitasViewHolder(View itemView){
             super(itemView);
             txtJudul = (TextView) itemView.findViewById(R.id.judulTugas);
-            txtNama = (TextView) itemView.findViewById(R.id.namaKaryawan);
+            txtNama = (TextView) itemView.findViewById(R.id.txtnamaKaryawan);
             txtTenggat = (TextView) itemView.findViewById(R.id.tenggat);
         }
     }

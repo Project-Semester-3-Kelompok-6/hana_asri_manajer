@@ -13,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
     private AktifitasAdapter adapter;
     private ArrayList<ListAktivitas> AktifitasArrayList;
     private ImageView imgView;
+    private TextView textView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -98,6 +102,21 @@ public class HomeFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+//        imgView = view.findViewById(R.id.btnTugas);
+//        imgView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Buat objek PresensiFragment
+//                TugasFragment tugasFragment = new TugasFragment();
+//
+//                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.flFragment, tugasFragment);
+//                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+//                transaction.commit();
+//            }
+//        });
 
         // view
         return view;

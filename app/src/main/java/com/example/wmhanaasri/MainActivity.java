@@ -1,11 +1,15 @@
 package com.example.wmhanaasri;
 
+import static com.example.wmhanaasri.R.id.btnTugas;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private TugasFragment tugasFragment = new TugasFragment();
     private RekapFragment rekapFragment = new RekapFragment();
     private KaryawanFragment karyawanFragment = new KaryawanFragment();
+    private ImageButton imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,36 +35,45 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        //gawe swipe per fragment
-        ViewPager2 viewPager = findViewById(R.id.view_pager);
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        ImageButton btnTugas = findViewById(R.id.btnTugas);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        viewPager.setAdapter(adapter);
+        btnTugas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ganti tampilan fragmen ke fragment_tugas
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.flFragment, new TugasFragment())
+                        .commit();
 
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            // Setel teks tab sesuai dengan posisi
-            tab.setText("Tab " + (position + 1));
-        }).attach();
+                // Setel item navigasi bawah ke "Tugas"
+                bottomNavigationView.setSelectedItemId(R.id.tugas);
+            }
+        });
+
+
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        int position = 0;       //gawe nentukan posisi tab sng digawe karo ViewPager beno iso diswipe
 
         if (itemId == R.id.home) {
+            // Ganti tampilan fragmen tanpa menekan tombol navigasi
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
             return true;
         } else if (itemId == R.id.tugas) {
+            // Ganti tampilan fragmen tanpa menekan tombol navigasi
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, tugasFragment).commit();
             return true;
         } else if (itemId == R.id.rekap) {
+            // Ganti tampilan fragmen tanpa menekan tombol navigasi
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, rekapFragment).commit();
             return true;
         } else if (itemId == R.id.karyawan) {
+            // Ganti tampilan fragmen tanpa menekan tombol navigasi
             getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, karyawanFragment).commit();
             return true;
         }
         return false;
     }
+
 }

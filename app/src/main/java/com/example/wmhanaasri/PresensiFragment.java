@@ -1,18 +1,26 @@
 package com.example.wmhanaasri;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import adapter.AktifitasAdapter;
 import adapter.PresensiAdapter;
 
 /**
@@ -33,6 +41,8 @@ public class PresensiFragment extends Fragment {
     private RecyclerView recyclerView;
     private PresensiAdapter adapter;
     private ArrayList<ListPresensi> PresensiArrayList;
+    private Toolbar toolbar;
+    private ImageButton imgButton;
 
     public PresensiFragment() {
         // Required empty public constructor
@@ -65,6 +75,7 @@ public class PresensiFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,9 +99,23 @@ public class PresensiFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        // gw tombol back
+        imgButton = view.findViewById(R.id.btnBack);
+        imgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HomeFragment homeFragment = new HomeFragment();
+
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, homeFragment);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
+            }
+        });
 
         return view;
     }
+
     void addData(){
         PresensiArrayList = new ArrayList<>();
         PresensiArrayList.add(new ListPresensi("Gilang", "Mobile Developer", "Hadir | ", "09:13"));
