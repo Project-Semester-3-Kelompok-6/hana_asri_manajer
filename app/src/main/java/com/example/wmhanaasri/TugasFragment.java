@@ -1,14 +1,18 @@
 package com.example.wmhanaasri;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -32,6 +36,7 @@ public class TugasFragment extends Fragment {
     private RecyclerView recyclerView;
     private AktifitasAdapter adapter;
     private ArrayList<ListAktivitas> AktifitasArrayList;
+    private FloatingActionButton btnTambah;
 
     public TugasFragment() {
         // Required empty public constructor
@@ -87,6 +92,21 @@ public class TugasFragment extends Fragment {
         // Mengatur layout manager dan adapter untuk RecyclerView
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        //btn tambah tugas
+        btnTambah = view.findViewById(R.id.btnTambah);
+        btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TambahTugasFragment tambahTugas = new TambahTugasFragment();
+
+                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, tambahTugas);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
+            }
+        });
 
         return view;
     }

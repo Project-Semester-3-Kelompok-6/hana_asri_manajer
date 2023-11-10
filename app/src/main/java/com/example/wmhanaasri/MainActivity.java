@@ -35,20 +35,20 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        ImageButton btnTugas = findViewById(R.id.btnTugas);
+//        ImageButton btnTugas = findViewById(R.id.btnTugas);
 
-        btnTugas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Ganti tampilan fragmen ke fragment_tugas
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.flFragment, new TugasFragment())
-                        .commit();
-
-                // Setel item navigasi bawah ke "Tugas"
-                bottomNavigationView.setSelectedItemId(R.id.tugas);
-            }
-        });
+//        btnTugas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Ganti tampilan fragmen ke fragment_tugas
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.flFragment, new TugasFragment())
+//                        .commit();
+//
+//                // Setel item navigasi bawah ke "Tugas"
+//                bottomNavigationView.setSelectedItemId(R.id.tugas);
+//            }
+//        });
 
 
     }
