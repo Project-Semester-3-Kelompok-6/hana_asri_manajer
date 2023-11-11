@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import adapter.PresensiAdapter;
@@ -43,6 +45,7 @@ public class PresensiFragment extends Fragment {
     private ArrayList<ListPresensi> PresensiArrayList;
     private Toolbar toolbar;
     private ImageButton imgButton;
+    private FloatingActionButton btnTambah;
 
     public PresensiFragment() {
         // Required empty public constructor
@@ -108,6 +111,21 @@ public class PresensiFragment extends Fragment {
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.flFragment, homeFragment);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
+            }
+        });
+
+        //btn tambah sesi presensi
+        btnTambah = view.findViewById(R.id.btnTambah);
+        btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TambahSesiFragment tambahSesi = new TambahSesiFragment();
+
+                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, tambahSesi);
                 transaction.addToBackStack(null); // Untuk menambahkan ke back stack
                 transaction.commit();
             }

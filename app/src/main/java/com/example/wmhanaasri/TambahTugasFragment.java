@@ -1,15 +1,22 @@
 package com.example.wmhanaasri;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +36,8 @@ public class TambahTugasFragment extends Fragment {
     private Spinner spinner;
     private Spinner spinner2;
     private SpinnerAdapter adapter;
+    private EditText tenggat;
+    private DatePickerDialog picker;
 
     public TambahTugasFragment() {
         // Required empty public constructor
@@ -61,34 +70,57 @@ public class TambahTugasFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_tambah_tugas, container, false);
-        spinner = view.findViewById(R.id.spinDivisi);
-        spinner2 = view.findViewById(R.id.spinKepada);
+//        spinner = view.findViewById(R.id.spinDivisi);
+//        spinner2 = view.findViewById(R.id.spinKepada);
+//
+//        ArrayAdapter<String> adapterDivisi = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item);
+//        adapterDivisi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        ArrayAdapter<String> adapterKepada = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item);
+//        adapterKepada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        adapterDivisi.add("Pilih Divisi");
+//        adapterDivisi.add("Mobile App Developer");
+//        adapterDivisi.add("Marketing");
+//
+//        adapterKepada.add("Pilih Tujuan");
+//        adapterKepada.add("Gilang Rizqi");
+//        adapterKepada.add("Gilang Arjuna");
+//
+//        spinner.setAdapter(adapterDivisi); // Mengatur adapter ke Spinner
+//        spinner.setSelection(0); // Memilih item "Pilih Divisi" sebagai item default
+//
+//        spinner2.setAdapter(adapterKepada); // Mengatur adapter ke Spinner
+//        spinner2.setSelection(0); // Memilih item "Pilih Tujuan" sebagai item default
 
-        ArrayAdapter<String> adapterDivisi = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item);
-        adapterDivisi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tenggat = view.findViewById(R.id.tenggat);
+        tenggat.setInputType(InputType.TYPE_NULL);
 
-        ArrayAdapter<String> adapterKepada = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item);
-        adapterKepada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        adapterDivisi.add("Pilih Divisi");
-        adapterDivisi.add("Mobile App Developer");
-        adapterDivisi.add("Marketing");
-
-        adapterKepada.add("Pilih Tujuan");
-        adapterKepada.add("Gilang Rizqi");
-        adapterKepada.add("Gilang Arjuna");
-
-        spinner.setAdapter(adapterDivisi); // Mengatur adapter ke Spinner
-        spinner.setSelection(0); // Memilih item "Pilih Divisi" sebagai item default
-
-        spinner2.setAdapter(adapterKepada); // Mengatur adapter ke Spinner
-        spinner2.setSelection(0); // Memilih item "Pilih Tujuan" sebagai item default
+        tenggat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(requireContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
+                                tenggat.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
 
         return view;
     }
