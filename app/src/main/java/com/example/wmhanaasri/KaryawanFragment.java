@@ -1,12 +1,16 @@
 package com.example.wmhanaasri;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,7 @@ public class KaryawanFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FloatingActionButton btnTambah;
 
     public KaryawanFragment() {
         // Required empty public constructor
@@ -55,10 +60,27 @@ public class KaryawanFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_karyawan, container, false);
+        View view = inflater.inflate(R.layout.fragment_karyawan, container, false);
+
+        btnTambah = view.findViewById(R.id.btnTambahKaryawan);
+        btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TambahKaryawanFragment tambahKaryawanFragment = new TambahKaryawanFragment();
+
+                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, tambahKaryawanFragment);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
+            }
+        });
+
+        return view;
     }
 }

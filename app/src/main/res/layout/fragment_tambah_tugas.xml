@@ -60,19 +60,26 @@
             android:hint="Judul"
             android:inputType="text"/>
 
-        <EditText
-            android:id="@+id/textJudul2"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Deskripsi (opsional)"
-            android:inputType="textMultiLine"
-            android:lines="5"
-            android:gravity="top"
-            android:overScrollMode="always"
-            android:scrollbars="vertical"
-            android:scrollHorizontally="false"
-            android:background="@drawable/rounded_textfield"/>
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusTopStart="15dp">
+
+            <EditText
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:hint="Deskripsi"
+                android:gravity="top"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 <!--        <Spinner-->
 <!--            android:id="@+id/spinDivisi"-->

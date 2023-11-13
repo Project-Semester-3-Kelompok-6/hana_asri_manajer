@@ -5,12 +5,14 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,6 +37,7 @@ public class TambahTugasFragment extends Fragment {
     private String mParam2;
     private Spinner spinner;
     private Spinner spinner2;
+    private Button button;
     private SpinnerAdapter adapter;
     private EditText tenggat;
     private DatePickerDialog picker;
@@ -119,6 +122,20 @@ public class TambahTugasFragment extends Fragment {
                             }
                         }, year, month, day);
                 picker.show();
+            }
+        });
+
+        button = view.findViewById(R.id.btnTugaskan);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TugasFragment tugasFragment = new TugasFragment();
+
+                // Ganti tampilan fragmen dalam wadah (FrameLayout) dengan fragmen PresensiFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, tugasFragment);
+                transaction.addToBackStack(null); // Untuk menambahkan ke back stack
+                transaction.commit();
             }
         });
 

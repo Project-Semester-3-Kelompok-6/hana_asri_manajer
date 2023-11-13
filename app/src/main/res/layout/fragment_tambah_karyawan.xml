@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TambahSesiFragment">
+    tools:context=".TambahKaryawanFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -30,11 +31,11 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/TambahSesi"
+        android:id="@+id/TambahKaryawan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Tambah Sesi"
+        android:text="Tambah Karyawan"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/primary"
@@ -47,53 +48,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        app:layout_constraintTop_toBottomOf="@id/TambahSesi"
+        app:layout_constraintTop_toBottomOf="@id/TambahKaryawan"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/textJudul"
+            android:id="@+id/namKaryawan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Nama Sesi"
-            android:inputType="text"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
+            android:hint="Nama Karyawan"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopStart="15dp">
+            android:inputType="text"
+            android:hint="Email Karyawan"/>
 
-            <EditText
-                android:id="@+id/deskripsi"
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropDivisi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                android:hint="Deskripsi"
-                android:gravity="top" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:hint="Pilih Divisi"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <EditText
-            android:id="@+id/awalSesi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Awal Sesi"
-            android:inputType="text"/>
-
-        <EditText
-            android:id="@+id/akhirSesi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Akhir Sesi"
-            android:inputType="text"/>
 
         <Button
             android:id="@+id/btnTambahkan"
@@ -104,5 +101,6 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
